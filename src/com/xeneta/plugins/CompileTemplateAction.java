@@ -99,6 +99,8 @@ public class CompileTemplateAction extends AnAction {
             writeToFile(tempFile, selectedText);
             String output = compileTemplate(tempFile);
 
+            tempFile.delete();
+
             LOG.info("Selected text: [" + selectedText + "]");
             LOG.info("Output: [" + output + "]");
 
