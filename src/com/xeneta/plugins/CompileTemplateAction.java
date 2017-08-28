@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 public class CompileTemplateAction extends AnAction {
     Logger LOG = Logger.getInstance(CompileTemplateAction.class);
-    private Pattern patternIf = Pattern.compile("\\{% if (.*) %}");
+    private Pattern patternIf = Pattern.compile("\\{% if (.*?) %}");
     private Pattern patternExpr = Pattern.compile("\\{\\{ (.*?) }}");
 
     /**
@@ -80,10 +80,9 @@ public class CompileTemplateAction extends AnAction {
     public String compileTemplate(File tempFile) throws IOException, InterruptedException {
         Process python = new ProcessBuilder()
             .command("python", tempFile.getAbsolutePath())
-            .inheritIO()
             .start();
 
-        python.waitFor(500, TimeUnit.MILLISECONDS);
+        python.waitFor(10000, TimeUnit.MILLISECONDS);
 
         String output;
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(python.getInputStream()))) {
@@ -139,18 +138,18 @@ public class CompileTemplateAction extends AnAction {
         }
 
         try {
-            File tempFile = File.createTempFile("template-", ".tmp");
+            File tempFile = File.createTempFile("template-", ".py");
 
             writeToFile(tempFile, selectedText, dataModel);
             String output = compileTemplate(tempFile);
 
-            //tempFile.delete();
+            //tempFile.delete();        // Remove comment before production, hahaha
 
             LOG.info("Selected text: [" + selectedText + "]");
             LOG.info("Output: [" + output + "]");
 
             CopyPasteManager cpMgr = CopyPasteManager.getInstance();
-            cpMgr.setContents(new StringSelection(output));
+            cpMgr.setContents(new StringSelection(output.trim()));
         }
         catch(InterruptedException | URISyntaxException | IOException ex) {
             LOG.error("Process execution failed", ex);

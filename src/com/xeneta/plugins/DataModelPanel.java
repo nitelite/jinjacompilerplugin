@@ -43,7 +43,7 @@ public class DataModelPanel extends JBPanel {
             parent.data.put(key, value);
         });
 
-        this.setMinimumSize(new Dimension(200, 300));
+        this.setMinimumSize(new Dimension(500, 300));
         this.add(table, BorderLayout.CENTER);
     }
 
