@@ -12,6 +12,11 @@ import com.intellij.openapi.project.Project;
 
 import java.awt.datatransfer.StringSelection;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,10 +25,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CompileTemplateAction extends AnAction {
-
     Logger LOG = Logger.getInstance(CompileTemplateAction.class);
-
-    private String pythonFilePrefix = "Jinja Template Compilation\nLines needed to run jinja...\n\n";
     private Pattern keywordPattern = Pattern.compile("\\{% if (.*) %}");
 
     /**
@@ -49,10 +51,15 @@ public class CompileTemplateAction extends AnAction {
         return keyword;
     }
 
-    public void writeToFile(File tempFile, String template) throws IOException {
+    public void writeToFile(File tempFile, String template) throws IOException, URISyntaxException {
+        URI pyFileURI = this.getClass().getResource("/compile.py").toURI();
+        String compilePy = Files.readAllLines(Paths.get(pyFileURI), Charset.defaultCharset())
+            .stream()
+            .collect(Collectors.joining("\n"));
+
         FileWriter fw = new FileWriter(tempFile);
-        fw.write("template = \"\"\"\n" + template + "\n\"\"\"");
-        fw.write(pythonFilePrefix);
+        fw.write("template = \"\"\"\n" + template + "\n\"\"\"\n\n");
+        fw.write(compilePy);
         fw.flush();
         fw.close();
     }
@@ -107,11 +114,8 @@ public class CompileTemplateAction extends AnAction {
             CopyPasteManager cpMgr = CopyPasteManager.getInstance();
             cpMgr.setContents(new StringSelection(output));
         }
-        catch(InterruptedException ex) {
-            LOG.error("Process execution was interrupted", ex);
-        }
-        catch(IOException ex) {
-            LOG.error("Unable to parse template", ex);
+        catch(InterruptedException | URISyntaxException | IOException ex) {
+            LOG.error("Process execution failed", ex);
         }
     }
 }
