@@ -20,8 +20,6 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-    <toolWindow id="Placeholder Data" factoryClass="com.xeneta.plugins.DialogFactory"/>
   </extensions>
 
   <actions>
