@@ -49,6 +49,30 @@ public class CompileTemplateAction extends AnAction {
         return keyword;
     }
 
+    public void writeToFile(File tempFile, String template) throws IOException {
+        FileWriter fw = new FileWriter(tempFile);
+        fw.write("template = \"\"\"\n" + template + "\n\"\"\"");
+        fw.write(pythonFilePrefix);
+        fw.flush();
+        fw.close();
+    }
+
+    public String compileTemplate(File tempFile) throws IOException, InterruptedException {
+        Process python = new ProcessBuilder()
+            .command("python", tempFile.getAbsolutePath())
+            .inheritIO()
+            .start();
+
+        python.waitFor(500, TimeUnit.MILLISECONDS);
+
+        String output;
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(python.getInputStream()))) {
+            output = buffer.lines().collect(Collectors.joining("\n"));
+        }
+
+        return output;
+    }
+
     /**
      * This takes care of actually parsing the needed values and pops up a window to ask for values.
      */
@@ -56,13 +80,7 @@ public class CompileTemplateAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         //Get all the required data from data keys
         final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        final Project project = e.getRequiredData(CommonDataKeys.PROJECT);
-
-        //Access document, caret, and selection
-        final Document document = editor.getDocument();
         final SelectionModel selectionModel = editor.getSelectionModel();
-        final int start = selectionModel.getSelectionStart();
-        final int end = selectionModel.getSelectionEnd();
 
         String selectedText = selectionModel.getSelectedText();
 
@@ -73,26 +91,13 @@ public class CompileTemplateAction extends AnAction {
 
         List<String> keywords = getKeywords(selectedText);
 
+        LOG.info("Keywords: " + keywords);
+
         try {
             File tempFile = File.createTempFile("template-", ".tmp");
 
-            FileWriter fw = new FileWriter(tempFile);
-            fw.write("template = \"\"\"\n" + selectedText + "\n\"\"\"");
-            fw.write(pythonFilePrefix);
-            fw.flush();
-            fw.close();
-
-            Process python = new ProcessBuilder()
-                .command("python", tempFile.getAbsolutePath())
-                .inheritIO()
-                .start();
-
-            python.waitFor(500, TimeUnit.MILLISECONDS);
-
-            String output = null;
-            try (BufferedReader buffer = new BufferedReader(new InputStreamReader(python.getInputStream()))) {
-                output = buffer.lines().collect(Collectors.joining("\n"));
-            }
+            writeToFile(tempFile, selectedText);
+            String output = compileTemplate(tempFile);
 
             LOG.info("Selected text: [" + selectedText + "]");
             LOG.info("Output: [" + output + "]");
