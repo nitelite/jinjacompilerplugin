@@ -34,8 +34,12 @@ public class DataModelPanel extends JBPanel {
         DataModelPanel parent = this;
 
         table.getModel().addTableModelListener(e -> {
-            String key = (String)model.getValueAt(e.getFirstRow(), e.getColumn());
-            String value = (String)model.getValueAt(e.getLastRow(), e.getColumn());
+            if(e.getColumn() != 1) {
+                return;
+            }
+
+            String key = (String)model.getValueAt(e.getFirstRow(), 0);
+            String value = (String)model.getValueAt(e.getFirstRow(), 1);
             parent.data.put(key, value);
         });
 

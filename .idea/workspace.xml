@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b758bfe-36ff-4a73-b5fe-bf41398b8632" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/xeneta/plugins/DialogFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/xeneta/plugins/PlaceholderDataToolWindow.form" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/xeneta/plugins/PlaceholderDataToolWindow.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JinjaCompilerPlugin/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/out/production/JinjaCompilerPlugin/META-INF/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JinjaCompilerPlugin/compile.py" afterPath="$PROJECT_DIR$/out/production/JinjaCompilerPlugin/compile.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xeneta/plugins/CompileTemplateAction.java" afterPath="$PROJECT_DIR$/src/com/xeneta/plugins/CompileTemplateAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java" afterPath="$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +28,12 @@
       <file leaf-file-name="DataModelPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+            <state relative-caret-position="442">
+              <caret line="41" column="72" lean-forward="true" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
               <folding>
-                <element signature="e#1418#1419#0" expanded="true" />
-                <element signature="e#1450#1451#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1471#1472#0" expanded="true" />
+                <element signature="e#1503#1504#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,8 +52,8 @@
       <file leaf-file-name="CompileTemplateAction.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/xeneta/plugins/CompileTemplateAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="71" column="43" lean-forward="false" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+            <state relative-caret-position="230">
+              <caret line="58" column="23" lean-forward="true" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -108,8 +102,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="46" />
-    <option name="y" value="179" />
+    <option name="x" value="95" />
+    <option name="y" value="147" />
     <option name="width" value="1695" />
     <option name="height" value="1100" />
   </component>
@@ -440,7 +434,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="46" y="179" width="1695" height="1100" extended-state="0" />
+    <frame x="95" y="147" width="1695" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -471,7 +465,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -489,8 +483,9 @@
         <state relative-caret-position="204">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1471#1472#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -744,17 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding>
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/table/DefaultTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -763,10 +747,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xeneta/plugins/DataModelPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="41" column="72" lean-forward="true" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1471#1472#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xeneta/plugins/CompileTemplateAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="71" column="43" lean-forward="false" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+        <state relative-caret-position="230">
+          <caret line="58" column="23" lean-forward="true" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
           <folding />
         </state>
       </provider>

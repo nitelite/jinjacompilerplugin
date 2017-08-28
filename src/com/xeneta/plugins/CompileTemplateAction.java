@@ -68,7 +68,7 @@ public class CompileTemplateAction extends AnAction {
         FileWriter fw = new FileWriter(tempFile);
         fw.write("template = \"\"\"\n" + template + "\n\"\"\"\n\n");
         String modelPy = dataModel.entrySet().stream()
-            .map(e -> "'" + e.getKey() + "': " + e.getValue())
+            .map(e -> "'" + e.getKey() + "': '" + e.getValue() + "'")
             .collect(Collectors.joining(", "));
 
         fw.write("model = {" + modelPy + "}\n\n");
