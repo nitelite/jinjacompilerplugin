@@ -1,16 +1,31 @@
 package com.xeneta.plugins;
 
+import com.intellij.ide.fileTemplates.FileTemplate;
+import com.intellij.ide.fileTemplates.FileTemplateManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
+import com.intellij.openapi.fileTypes.FileType;
+import com.intellij.openapi.fileTypes.FileTypeConsumer;
+import com.intellij.openapi.fileTypes.FileTypeFactory;
 import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogBuilder;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiFileFactory;
+import com.intellij.psi.impl.file.PsiDirectoryImpl;
+import com.intellij.util.IncorrectOperationException;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import javax.swing.*;
 import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.net.URI;
@@ -21,6 +36,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -150,6 +166,12 @@ public class CompileTemplateAction extends AnAction {
 
             CopyPasteManager cpMgr = CopyPasteManager.getInstance();
             cpMgr.setContents(new StringSelection(output.trim()));
+
+            //PsiFileFactory.getInstance(project).createFileFromText()
+            PsiDirectory p;
+
+            PsiFileFactory factory = PsiFileFactory.getInstance(project);
+            PsiFile file = factory.createFileFromText("tmp.sql", output);
         }
         catch(InterruptedException | URISyntaxException | IOException ex) {
             LOG.error("Process execution failed", ex);
